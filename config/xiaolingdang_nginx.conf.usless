@@ -1,0 +1,18 @@
+server {
+    listen 80;
+#    server_name www.xiaolingdang.top;
+    server_name _;
+    charset utf-8;
+
+    client_max_body_size 5M;
+
+    location / {
+         include uwsgi_params;
+         uwsgi_pass unix:/root/xiaolingdang/mysite.sock;
+#         uwsgi_pass 127.0.0.1:8001;
+     }
+
+     location /static {
+         alias /root/xiaolingdang/static;
+     }
+}
