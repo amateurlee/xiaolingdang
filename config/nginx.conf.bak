@@ -2,7 +2,8 @@
 #   * Official English Documentation: http://nginx.org/en/docs/
 #   * Official Russian Documentation: http://nginx.org/ru/docs/
 
-user nginx;
+#user nginx;
+user root;  # to read /root/xiaolingdang/uwsgi/mysite.sock
 worker_processes auto;
 error_log /var/log/nginx/error.log;
 pid /run/nginx.pid;
@@ -46,8 +47,8 @@ http {
 
         location / {
          include uwsgi_params;
-#         uwsgi_pass unix:/root/xiaolingdang/uwsgi/mysite.sock;
-         uwsgi_pass 127.0.0.1:8001;
+         uwsgi_pass unix:/root/xiaolingdang/uwsgi/mysite.sock;
+#         uwsgi_pass 127.0.0.1:8001;
         }
 
         error_page 404 /404.html;
