@@ -1,0 +1,162 @@
+*** Starting uWSGI 2.0.17 (64bit) on [Sat Apr  7 11:42:51 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-16) on 06 April 2018 14:23:37
+os: Linux-3.10.0-693.2.2.el7.x86_64 #1 SMP Tue Sep 12 22:26:13 UTC 2017
+nodename: iZbp1768xkpnkpgj4h1c8pZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /root/xiaolingdang
+*** running under screen session 20494.pts-0.iZbp1768xkpnkpgj4h1c8pZ ***
+writing pidfile to /root/xiaolingdang/logs/uwsgi.pid
+detected binary path: /root/xiaolingdang/xiaolingdangvenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /root/xiaolingdang
+your processes number limit is 7283
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /root/xiaolingdang/logs/mysite.sock fd 3
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 2.7.5 (default, Aug  4 2017, 00:39:18)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-16)]
+Set PythonHome to /root/xiaolingdang/xiaolingdangvenv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x19f8b70
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 218712 bytes (213 KB) for 2 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x19f8b70 pid: 23606 (default app)
+mountpoint  already configured. skip.
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 23606)
+spawned uWSGI worker 1 (pid: 23611, cores: 1)
+spawned uWSGI worker 2 (pid: 23612, cores: 1)
+SIGINT/SIGQUIT received...killing workers...
+*** Starting uWSGI 2.0.17 (64bit) on [Sat Apr  7 11:43:45 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-16) on 06 April 2018 14:23:37
+os: Linux-3.10.0-693.2.2.el7.x86_64 #1 SMP Tue Sep 12 22:26:13 UTC 2017
+nodename: iZbp1768xkpnkpgj4h1c8pZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /root/xiaolingdang
+*** running under screen session 20494.pts-0.iZbp1768xkpnkpgj4h1c8pZ ***
+writing pidfile to /root/xiaolingdang/logs/uwsgi.pid
+detected binary path: /root/xiaolingdang/xiaolingdangvenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /root/xiaolingdang
+your processes number limit is 7283
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /root/xiaolingdang/logs/mysite.sock fd 3
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 2.7.5 (default, Aug  4 2017, 00:39:18)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-16)]
+Set PythonHome to /root/xiaolingdang/xiaolingdangvenv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x2421b70
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 218712 bytes (213 KB) for 2 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x2421b70 pid: 23622 (default app)
+mountpoint  already configured. skip.
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 23622)
+spawned uWSGI worker 1 (pid: 23627, cores: 1)
+spawned uWSGI worker 2 (pid: 23628, cores: 1)
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+goodbye to uWSGI.
+SIGINT/SIGQUIT received...killing workers...
+*** Starting uWSGI 2.0.17 (64bit) on [Sat Apr  7 11:44:19 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-16) on 06 April 2018 14:23:37
+os: Linux-3.10.0-693.2.2.el7.x86_64 #1 SMP Tue Sep 12 22:26:13 UTC 2017
+nodename: iZbp1768xkpnkpgj4h1c8pZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /root/xiaolingdang
+*** running under screen session 20494.pts-0.iZbp1768xkpnkpgj4h1c8pZ ***
+writing pidfile to /root/xiaolingdang/logs/uwsgi.pid
+detected binary path: /root/xiaolingdang/xiaolingdangvenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /root/xiaolingdang
+your processes number limit is 7283
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /root/xiaolingdang/logs/mysite.sock fd 3
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 2.7.5 (default, Aug  4 2017, 00:39:18)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-16)]
+Set PythonHome to /root/xiaolingdang/xiaolingdangvenv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x121db70
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 218712 bytes (213 KB) for 2 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x121db70 pid: 23637 (default app)
+mountpoint  already configured. skip.
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 23637)
+spawned uWSGI worker 1 (pid: 23644, cores: 1)
+spawned uWSGI worker 2 (pid: 23645, cores: 1)
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+goodbye to uWSGI.
+SIGINT/SIGQUIT received...killing workers...
+*** Starting uWSGI 2.0.17 (64bit) on [Sat Apr  7 11:46:03 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-16) on 06 April 2018 14:23:37
+os: Linux-3.10.0-693.2.2.el7.x86_64 #1 SMP Tue Sep 12 22:26:13 UTC 2017
+nodename: iZbp1768xkpnkpgj4h1c8pZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /root/xiaolingdang
+*** running under screen session 20494.pts-0.iZbp1768xkpnkpgj4h1c8pZ ***
+writing pidfile to /root/xiaolingdang/logs/uwsgi.pid
+detected binary path: /root/xiaolingdang/xiaolingdangvenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /root/xiaolingdang
+your processes number limit is 7283
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /root/xiaolingdang/logs/mysite.sock fd 3
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 2.7.5 (default, Aug  4 2017, 00:39:18)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-16)]
+Set PythonHome to /root/xiaolingdang/xiaolingdangvenv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1e34b70
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 218712 bytes (213 KB) for 2 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1e34b70 pid: 23666 (default app)
+mountpoint  already configured. skip.
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 23666)
+spawned uWSGI worker 1 (pid: 23673, cores: 1)
+spawned uWSGI worker 2 (pid: 23674, cores: 1)
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+goodbye to uWSGI.
+[pid: 23673|app: 0|req: 1/1] 116.243.7.6 () {42 vars in 721 bytes} [Sat Apr  7 11:46:06 2018] GET / => generated 12 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 79 bytes (1 switches on core 0)
+[pid: 23673|app: 0|req: 2/2] 116.243.7.6 () {42 vars in 721 bytes} [Sat Apr  7 11:46:09 2018] GET / => generated 12 bytes in 0 msecs (HTTP/1.1 200) 2 headers in 79 bytes (1 switches on core 0)

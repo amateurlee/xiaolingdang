@@ -47,7 +47,7 @@ http {
 
         location / {
          include uwsgi_params;
-         uwsgi_pass unix:/root/xiaolingdang/uwsgi/mysite.sock;
+         uwsgi_pass unix:/root/xiaolingdang/logs/mysite.sock;
 #         uwsgi_pass 127.0.0.1:8001;
         }
 
