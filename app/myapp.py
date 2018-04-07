@@ -6,6 +6,8 @@ from flask import Flask
 from werkzeug.contrib.fixers import ProxyFix
 app = Flask(__name__)
 
+from controller import *
+
 @app.route("/")
 def hello():
     return "Hello World!"
