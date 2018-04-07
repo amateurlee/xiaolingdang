@@ -17,15 +17,17 @@ doc: https://blog.csdn.net/lihao21/article/details/47731903
    ##python扩展包：
    pip install Flask-Script
    pip install gunicorn
+   pip install supervisor
+   echo_supervisord_conf > supervisor.conf   # 生成 supervisor 默认配置文件
+   vim supervisor.conf                       # 修改 supervisor 配置文件，添加 gunicorn 进程管理
+   supervisord -c config/supervisor.conf  #启动supervisor
+   supervisorctl -c config/supervisor.conf reload|sstatus|tart [all]|[appname]
 ```
 - 配置uWsgi、nginx
 ```
-* 增加uwsgi配置：config/uwsgi.ini
 * 修改nginx配置：config/nginx.conf.bak (/etc/nginx/nginx.conf)
-* 启动uWsgi： uwsgi –ini config/uwsgi.ini
 * 重启ngnix -s quit && nginx
-* 停止nWsgi: kill -9 `ps ax |grep uWSGI |grep -v grep | awk '{print $1}'`
-    uwsgi --stop logs/uwsgi.pid && uwsgi --ini config/uwsgi.ini
+* 停止gunicorn: kill -9 `ps ax |grep gunicorn |grep -v grep | awk '{print $1}'`
 ```
 
 
