@@ -3,16 +3,16 @@ from flask import render_template
 from .. import app
 
 @app.route('/')
-@app.route('/index')
-def index():
+@app.route('/test')
+def test():
     user = { 'nickname': 'Xihui_ControllerTest' } # fake user
-    return render_template("index.html",
+    return render_template("test.html",
         title = 'Home',
         user = user)
 
-@app.route('/index/<name>')
-def param(name):
+@app.route('/test/<name>')
+def paramTest(name):
     user = { 'nickname': name } # fake user
-    return render_template("index.html",
+    return render_template("test.html",
         title = 'Home',
         user = user)
