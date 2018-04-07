@@ -14,7 +14,9 @@ doc: https://blog.csdn.net/lihao21/article/details/47731903
    source ./xiaolingdangvenv/bin/activate
    pip install flask 
    pip install uwsgi
-   # ./yum -y install python-devel python-setuptools libxml2-devel
+   ##python扩展包：
+   pip install Flask-Script
+   pip install gunicorn
 ```
 - 配置uWsgi、nginx
 ```
@@ -23,7 +25,7 @@ doc: https://blog.csdn.net/lihao21/article/details/47731903
 * 启动uWsgi： uwsgi –ini config/uwsgi.ini
 * 重启ngnix -s quit && nginx
 * 停止nWsgi: kill -9 `ps ax |grep uWSGI |grep -v grep | awk '{print $1}'`
-    uwsgi --stop uwsgi/uwsgi.pid && uwsgi --ini config/uwsgi.ini
+    uwsgi --stop logs/uwsgi.pid && uwsgi --ini config/uwsgi.ini
 ```
 
 
