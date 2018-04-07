@@ -1,6 +1,5 @@
 #!/bin/sh
 rootPath=/root/xiaolingdang
-nginx -s quit
-uwsgi --stop ${rootPath}/logs/uwsgi.pid 
-uwsgi --ini ${rootPath}/config/uwsgi.ini
-nginx
+#nginx -s quit
+cd ${rootPath} && supervisorctl -c config/supervisor.conf reload
+#nginx
