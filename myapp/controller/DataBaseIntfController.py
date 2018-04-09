@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from flask import render_template
-from myapp import app, services
+from .. import app
 from myapp.datacenter.db.dbtool import DBTool
 
 @app.route('/getFullData/ag/<indexCode>')
