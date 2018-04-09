@@ -5,15 +5,16 @@
     <title>投资小铃铛主页</title>
 </head>
 <body>
-<h1>Hi,你好, 这是测试DB页面，你给我的数据是：{{data}}
-    <table>
-        <th>
+Hi,你好, 这是测试DB页面，所有A股数据表
+    <table border="1">
+        <thead>
         <td>id</td>
         <td>index_name</td>
         <td>index_code</td>
         <td>time</td>
         <td>closes</td>
-        </th>
+        </thead>
+	<tbody>
         {% for one in data %}
         <tr>
             <td>{{one.id}}</td>
@@ -23,14 +24,7 @@
             <td>{{one.closes}}</td>
         </tr>
         {% endfor %}
+	</tbody>
     </table>
-
-    for data in all_data:
-    print (u"ID: %s" % data.id)
-    print (u"indexName: %s" % data.index_name)
-    print (u"stockName: %s" % data.stock_code)
-    print (u"time: %s" % data.time)
-    print "\n"
-</h1>
 </body>
 </html>
