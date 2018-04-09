@@ -12,7 +12,7 @@ Hi,你好, 这是测试DB页面，所有A股数据表
         <td>index_name</td>
         <td>index_code</td>
         <td>time</td>
-        <td>closes</td>
+        <td>close</td>
         </thead>
 	<tbody>
         {% for one in data %}
@@ -21,7 +21,7 @@ Hi,你好, 这是测试DB页面，所有A股数据表
             <td>{{one.index_name}}</td>
             <td>{{one.stock_code}}</td>
             <td>{{one.time}}</td>
-            <td>{{one.closes}}</td>
+            <td>{{one.close}}</td>
         </tr>
         {% endfor %}
 	</tbody>

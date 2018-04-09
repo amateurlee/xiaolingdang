@@ -22,8 +22,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = settings.SQLITE3_DATA_PATH
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 xld_db = SQLAlchemy(app)
 
+##修改jinja2遍历识别符，避免与angularjs冲突
+# app.jinja_env.variable_start_string = '[['
+# app.jinja_env.variable_end_string = ']]'
+
 #只有在app对象之后声明，用于导入view模块
 from controller import TestController
 from controller import IndexController
-from controller import DataBaseIntfController
+from controller import CnIndexDataController
 
