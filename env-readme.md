@@ -23,14 +23,19 @@ doc: https://blog.csdn.net/lihao21/article/details/47731903
    supervisord -c config/supervisor.conf  #启动supervisor
    supervisorctl -c config/supervisor.conf reload|sstatus|tart [all]|[appname]
 ```
-- 配置uWsgi、nginx
+- 配置gunicorn、nginx
 ```
 * 修改nginx配置：config/nginx.conf.bak (/etc/nginx/nginx.conf)
 * 重启ngnix -s quit && nginx
 * 停止gunicorn: kill -9 `ps ax |grep gunicorn |grep -v grep | awk '{print $1}'`
 ```
+- 增加Firefox、Xvfb支持
+```
+* yum install firefox
+* http://tobyho.com/2015/01/09/headless-browser-testing-xvfb/
+* yum install python-xvfbwrapper.noarch xorg-x11-server-Xvfb.x86_64
 
-
+```
 # 常用命令
 ## nginx
 ./nginx -s quit

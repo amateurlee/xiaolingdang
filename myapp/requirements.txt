@@ -1,2 +1,4 @@
 flask
 Flask-SQLAlchemy >= 2.3.2
+selenium >= 3.11.0
+pyvirtualdisplay >= 0.2.1

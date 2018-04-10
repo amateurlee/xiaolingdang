@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-import urllib, urllib2
+import urllib, urllib2, datetime
 
 
 def _convertParamPairToStr(params):
@@ -47,3 +47,17 @@ class CommonTool:
         response = urllib2.urlopen(req)
         result = response.read()
         return result
+
+    @staticmethod
+    def dateRange(beginDate, endDate):
+        dates = []
+        dt = datetime.datetime.strptime(beginDate, "%Y-%m-%d")
+        date = beginDate[:]
+        while date <= endDate:
+            dates.append(date)
+            dt = dt + datetime.timedelta(1)
+            date = dt.strftime("%Y-%m-%d")
+        return dates
+
+if __name__ =="__main__":
+    print CommonTool.dateRange("2016-02-27", "2017-03-01")
