@@ -4,7 +4,7 @@ from .. import app
 from myapp.datacenter.db.dbtool import DBTool
 from myapp.services.cnDataCenterServices import *
 
-@app.route('/getFullData/cn/all')
+@app.route('/cn/getFullData')
 def getFullDataCnAll():
     '''
         获取所有A股数据包的数据
@@ -21,7 +21,7 @@ def addCnData():
     return render_template("cn/cnAddData.html")
 
 @app.route('/cn/addIndex/<stock_code>')
-def addCnData(stock_code):
+def addCnDataWithCode(stock_code):
     '''
     向数据库补充某一code下所有的数据
     :param stock_code:
