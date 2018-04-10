@@ -26,7 +26,7 @@ class SeleniumTool:
         elif "darwin" in osType:
             dirverFirefoxPath = os.path.abspath(APP_PATH + "/services/geckodrivermac")
         else:
-            dirverChromePath = os.path.abspath(APP_PATH + "/services/chromedriverlinux")  # not support windows for now
+            dirverChromePath = os.path.abspath(APP_PATH + "/services/geckodriverlinux")  # not support windows for now
 
         self.driver = webdriver.Firefox(executable_path=dirverFirefoxPath)
 
