@@ -1,10 +1,22 @@
 #setup steps:
 doc: https://blog.csdn.net/lihao21/article/details/47731903
+- 云主机配置
+  配置ECS安全组（管理实例->安全组规则），开通入方向的80端口权限
 - 安装配置nginx
 ```
   yum install nginx.x86_64
   nginx -s quit
   nginx
+  #HTTPS config:
+  sudo mkdir /etc/nginx/ssl
+  #以下key不被浏览器认可
+  sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+  配置/etc/nginx/nginx.conf, 增加:
+        listen       443 ssl;
+        ssl_certificate /etc/nginx/ssl/nginx.crt;
+        ssl_certificate_key /etc/nginx/ssl/nginx.key;
+  # 通过 https://freessl.org 制造的key和pem 可以被认可
+  
 ```
 - python相关配置
 ```shell
