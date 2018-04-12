@@ -23,7 +23,7 @@ class TestStringMethods(unittest.TestCase):
 
         # 将页面获取的数据保存到数据库中
         countBefore = cnDataService.countCnIndexDataByCode(STOCK_INFO["szzs"]["code"])
-        ret = cnDataService.addCnIndexDataToDB(retData)
+        #Just for test# ret = cnDataService.addCnIndexDataToDB(retData)
         countAfter = cnDataService.countCnIndexDataByCode(STOCK_INFO["szzs"]["code"])
         self.assertTrue(countAfter >= countBefore)
 

@@ -8,6 +8,8 @@ import logging, time
 class SseDataSource:
     sseDatePickerId = "start_date2"
     sseQueryButtenID = "btnQuery"
+    szzsCode = "000001"
+    ### 上证市场平均市盈率和平均换手率的XPATH
     avgPERatioCaptureRootUrl = "http://www.sse.com.cn/market/stockdata/overview/day/"
     avgNoDataTDXpath = "//td[contains(text(),'没有数据')]"
     avgPERatioValueXpath = "//td[contains(text(),'平均市盈率')]/../td[3]/div"
@@ -76,13 +78,44 @@ class SseDataSource:
                     logging.error("Getting PE data for SSE failed on date:" + date)
                     continue
                 else:
-                    ratio = (date.replace("-", ""), peRatio, turnoverRate)
+                    ratio = (SseDataSource.szzsCode, date.replace("-", ""), peRatio, turnoverRate)
                     PERatio.append(ratio)
                     bakPERatio = peRatio
                     bakTORatio = turnoverRate
                     hasNoDataDateDelta = 0
-
         return PERatio
+
+
+    def addCnSSEPERateTORateToDB(self, webData):
+        '''
+        将上证平均PE和换手率数据添加到数据库，添加之前首先判断是否有重复的数据，去重后添加，
+        index_table_cn表中的数据可以以stock_code和time作为唯一标示
+        :param retData:
+        :return:
+        '''
+
+        ###### 1. 从数据库读取数据
+
+        szzsData = self.dbTool.getIndexTableCnDataByStockCode(STOCK_INFO["szzs"]["code"])
+        searchIndexData = {}  # 仅用来保存key
+        modelDataList = []
+        if szzsData:
+            for data in szzsData:
+                searchIndexData[data.time] = 0
+        ###### 2. 遍历新数据，判断是否已经在数据库中存在，添加新数据
+        for wdata in webData:
+            if searchIndexData.has_key(wdata["time"]):
+                continue  # 数据库中已经存在当前时间的记录
+            else:
+                model = IndexTableCnModel.IndexTableCnModel(index_name=wdata["index_name"],
+                                                            stock_code=wdata["stock_code"],
+                                                            time=wdata["time"], close=wdata["close"])
+                modelDataList.append(model)
+        ###### 3. 添加数据
+        if len(modelDataList) > 0:
+            for model in modelDataList:
+                xld_db.session.add(model)
+            xld_db.session.commit()
 
 
 if __name__ == "__main__":

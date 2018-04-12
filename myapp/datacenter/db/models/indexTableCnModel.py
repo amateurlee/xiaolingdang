@@ -1,6 +1,5 @@
 # -*- coding: UTF-8 -*-
 from myapp import xld_db
-from myapp.datacenter.db.models.baseModel import BaseModel
 import logging
 
 

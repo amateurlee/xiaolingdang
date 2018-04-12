@@ -23,7 +23,7 @@ class NeteaseDataParser:
                     ],
                     "name": "上证指数"
                 }
-        :return:
+        :return: [{记录1}{记录2}]
         '''
         resultDict = json.loads(jsonStr)
         if not resultDict or len(resultDict["times"])<=0 or len(resultDict["times"])!= len(resultDict["closes"]):

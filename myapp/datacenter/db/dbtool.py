@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from myapp.datacenter.db.models.IndexTableCnModel import *
+from myapp.datacenter.db.models.indexTableCnModel import *
 from myapp.settings import *
 import logging
 

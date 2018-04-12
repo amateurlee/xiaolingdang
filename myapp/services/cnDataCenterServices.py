@@ -2,7 +2,7 @@
 
 from myapp.datacenter.dataSource.neteaseFetcher import *
 from myapp.datacenter.db.dbtool import DBTool
-from myapp.datacenter.db.models import IndexTableCnModel
+from myapp.datacenter.db.models import indexTableCnModel
 from myapp import xld_db
 from myapp.settings import *
 
@@ -48,13 +48,14 @@ class CnDataCenterServices:
         modelDataList = []
         if szzsData:
             for data in szzsData:
-                searchIndexData[data.time] = 0
+                uniKey = "{}{}".format(data.stock_code, data.time)
+                searchIndexData[uniKey] = 0 # 以指数代码和时间组成唯一标示的key判断存在性
         ###### 2. 遍历新数据，判断是否已经在数据库中存在，添加新数据
         for wdata in webData:
-            if searchIndexData.has_key(wdata["time"]):
+            if searchIndexData.has_key("{}{}".format(wdata["stock_code"], wdata["time"])):
                 continue  # 数据库中已经存在当前时间的记录
             else:
-                model = IndexTableCnModel.IndexTableCnModel(index_name=wdata["index_name"],
+                model = indexTableCnModel.IndexTableCnModel(index_name=wdata["index_name"],
                                                             stock_code=wdata["stock_code"],
                                                             time=wdata["time"], close=wdata["close"])
                 modelDataList.append(model)
