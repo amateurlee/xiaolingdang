@@ -1,7 +1,9 @@
 # -*- coding: UTF-8 -*-
 
-from myapp.datacenter.dataSource.neteaseFetcher import *
-from myapp.datacenter.db.cnindexdao import CnIndexDao
+from myapp.datacenter.dataSource.neteaseFetcher import NeteaseDataFetcher
+from myapp.datacenter.dataSource.sseDataSource import SseDataSource
+from myapp.datacenter.db.dao.cnindexdao import CnIndexDao
+from myapp.datacenter.db.dao.cnPeTurnoverRateDao import CnPeRurnoverRateDao
 from myapp.datacenter.db.models import indexTableCnModel
 from myapp import xld_db
 from myapp.settings import *
@@ -14,7 +16,9 @@ class CnIndexServices:
 
     def __init__(self):
         self.neteaseDataFetcher = NeteaseDataFetcher()
+        self.sseDataSource = SseDataSource()
         self.cnIndexDao = CnIndexDao()
+        self.cnPeRurnoverRateDao = CnPeRurnoverRateDao()
 
     def fetchCnIndexDataFromWeb(self, stock_code, addtime=None):
         '''
@@ -64,3 +68,24 @@ class CnIndexServices:
             for model in modelDataList:
                 xld_db.session.add(model)
             xld_db.session.commit()
+
+    def getCnPeRurnoverRateFromWeb (self, startDate, endData):
+        '''
+        从SSE上证交易所获取平均PE和换手率
+        :param startDate: "2018-04-01"
+        :param endData: "2018-04-04"
+        :return:
+        '''
+        sse = SseDataSource()
+        data = sse.getSSEPERatio(beginDate=startDate, toDate=endData)
+        self.assertTrue(len(data) > 0)
+        # formerdata = data.pop(0)
+        # self.assertTrue(formerdata[1]!=None, "PE data is none for:{}".format(formerdata))
+        # self.assertTrue(formerdata[2]!=None, "TurnOver data is none for:{}".format(formerdata))
+        for d in data:
+            self.assertTrue(d[1] != None, "PE data is none for:{}".format(d))
+            self.assertTrue(d[2] != None, "TurnOver data is none for:{}".format(d))
+            self.assertNotEqual("{}{}".format(d[1], d[2]), "{}{}".format(formerdata[1], formerdata[2]))
+        self.test_PERatioTurnOverRateDataToDB(data)
+
+

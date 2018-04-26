@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from myapp.tools.seleniumTool import SeleniumTool
-from myapp.services.commonTool import CommonTool
+from myapp.tools.commonTool import CommonTool
 from selenium.webdriver.common.by import By
 import logging, time
 
@@ -17,9 +17,7 @@ class SseDataSource:
     avgPERatioRealDate = "//div[@class='sse_table_title2']/p"
 
     def __init__(self):
-        # http://img1.money.126.net/data/[沪深拼音]/[是否复权]/[周期]/times/[股票代码].jso
-        # http://img1.money.126.net/data/hs/kline/day/times/0000300.json
-        self.allDataUrl = "http://img1.money.126.net/data/hs/{stockrightprice}/{period}/times/{stocktype}{stockcode}.json"
+        pass
 
     def getSSEPERatio(self, beginDate, toDate=None):
         '''

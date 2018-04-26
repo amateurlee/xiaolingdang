@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from myapp.datacenter.db.models.cnPERateTurnoverRate import *
+from myapp.datacenter.db.models.cnPERateTurnoverRateModel import *
 from myapp.settings import *
 import logging
 
@@ -19,4 +19,7 @@ class CnPeRurnoverRateDao:
             logging.debug("get ALL data from cn_perate_turnoverrate")
             all_data = CnPERateTurnoverRateModel.query.all()
         return all_data
+
+    def addCnSSEPeTurnoverRateToDB(self):
+        #TODO:
 
