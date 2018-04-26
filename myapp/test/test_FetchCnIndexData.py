@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 import unittest, os
-from myapp.services.cnDataCenterServices import *
+from myapp.services.cnIndexServices import *
 from myapp.settings import *
 
 
@@ -15,7 +15,7 @@ class TestStringMethods(unittest.TestCase):
         pass
 
     def test_FetchCnIndexData(self):
-        cnDataService = CnDataCenterServices()
+        cnDataService = CnIndexServices()
         # 从页面获取指标数据
         retData = cnDataService.fetchCnIndexDataFromWeb(STOCK_INFO["szzs"]["code"])
         self.assertTrue(retData != False)

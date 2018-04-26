@@ -1,20 +1,20 @@
 # -*- coding: UTF-8 -*-
 
 from myapp.datacenter.dataSource.neteaseFetcher import *
-from myapp.datacenter.db.dbtool import DBTool
+from myapp.datacenter.db.cnindexdao import CnIndexDao
 from myapp.datacenter.db.models import indexTableCnModel
 from myapp import xld_db
 from myapp.settings import *
 
 
-class CnDataCenterServices:
+class CnIndexServices:
     '''
     CnDataCenterServices提供A股市场的逻辑处理业务
     '''
 
     def __init__(self):
         self.neteaseDataFetcher = NeteaseDataFetcher()
-        self.dbTool = DBTool()
+        self.cnIndexDao = CnIndexDao()
 
     def fetchCnIndexDataFromWeb(self, stock_code, addtime=None):
         '''
@@ -32,7 +32,7 @@ class CnDataCenterServices:
             pass
 
     def countCnIndexDataByCode(self, code):
-        return self.dbTool.getIndexTableCnDataCountByStockCode(code=code)
+        return self.cnIndexDao.getCnIndexTableDataCountByStockCode(code=code)
 
     def addCnIndexDataToDB(self, webData):
         '''
@@ -43,7 +43,7 @@ class CnDataCenterServices:
 
         ###### 1. 从数据库读取数据
 
-        szzsData = self.dbTool.getIndexTableCnDataByStockCode(STOCK_INFO["szzs"]["code"])
+        szzsData = self.cnIndexDao.getCnIndexTableDataByStockCode(STOCK_INFO["szzs"]["code"])
         searchIndexData = {}  # 仅用来保存key
         modelDataList = []
         if szzsData:

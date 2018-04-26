@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from myapp.services.seleniumTool import SeleniumTool
+from myapp.tools.seleniumTool import SeleniumTool
 from myapp.services.commonTool import CommonTool
 from selenium.webdriver.common.by import By
 import logging, time
@@ -22,6 +22,13 @@ class SseDataSource:
         self.allDataUrl = "http://img1.money.126.net/data/hs/{stockrightprice}/{period}/times/{stocktype}{stockcode}.json"
 
     def getSSEPERatio(self, beginDate, toDate=None):
+        '''
+        通过selenium工具获取上证指数指定时间段的平均市盈率，
+        :param beginDate:
+        :param toDate:
+        :return:数组格式：（IndexCode, Date, PE市盈率， 市净率）
+        :sample:[('000001', '20180402', '17.73', '0.5638'), ('000001', '20180403', '17.57', '0.4829'), ('000001', '20180404', '17.54', '0.4666')]
+        '''
         if beginDate > toDate:
             logging.error("Getting PERatio data from date({}) to date({}) error".format(beginDate, toDate))
             return False
@@ -96,7 +103,7 @@ class SseDataSource:
 
         ###### 1. 从数据库读取数据
 
-        szzsData = self.dbTool.getIndexTableCnDataByStockCode(STOCK_INFO["szzs"]["code"])
+        szzsData = self.dbTool.getCnIndexTableDataByStockCode(STOCK_INFO["szzs"]["code"])
         searchIndexData = {}  # 仅用来保存key
         modelDataList = []
         if szzsData:

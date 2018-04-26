@@ -1,16 +1,16 @@
 # -*- coding: UTF-8 -*-
 from flask import render_template
 from .. import app
-from myapp.datacenter.db.dbtool import DBTool
-from myapp.services.cnDataCenterServices import *
+from myapp.datacenter.db.cnindexdao import CnIndexDao
+from myapp.services.cnIndexServices import *
 
 @app.route('/cn/getFullData')
 def getFullDataCnAll():
     '''
         获取所有A股数据包的数据
     '''
-    dbTool = DBTool()
-    data = dbTool.getIndexTableCnAllData()
+    dbTool = CnIndexDao()
+    data = dbTool.getCnIndexTableDataByStockCode(None)
     return render_template("cn/cnAlldata.html", data = data)
 
 @app.route('/cn/addIndex')
@@ -29,17 +29,17 @@ def addCnDataWithCode(stock_code):
     :return: 添加是否成功
     '''
 
-    cnDataService = CnDataCenterServices()
-    # 从页面获取指标数据
-    retData = cnDataService.fetchCnIndexDataFromWeb(STOCK_INFO["szzs"]["code"])
+    # cnDataService = CnDataCenterServices()
+    # # 从页面获取指标数据
+    # retData = cnDataService.fetchCnIndexDataFromWeb(STOCK_INFO["szzs"]["code"])
+    # 
+    # 
+    # # 将页面获取的数据保存到数据库中
+    # countBefore = cnDataService.countCnIndexDataByCode(STOCK_INFO["szzs"]["code"])
+    # ret = cnDataService.addCnIndexDataToDB(retData)
+    # countAfter = cnDataService.countCnIndexDataByCode(STOCK_INFO["szzs"]["code"])
 
-
-    # 将页面获取的数据保存到数据库中
-    countBefore = cnDataService.countCnIndexDataByCode(STOCK_INFO["szzs"]["code"])
-    ret = cnDataService.addCnIndexDataToDB(retData)
-    countAfter = cnDataService.countCnIndexDataByCode(STOCK_INFO["szzs"]["code"])
-
-    cnDataService = CnDataCenterServices()
+    cnDataService = CnIndexServices()
     # 从页面获取指标数据
     retData = cnDataService.fetchCnIndexDataFromWeb(stock_code)
     if not retData or len(retData) == 0:
