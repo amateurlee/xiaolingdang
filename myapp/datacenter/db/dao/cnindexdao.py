@@ -31,3 +31,14 @@ class CnIndexDao:
         count = IndexTableCnModel.query.filter_by(stock_code=code).count()
         return count
 
+    def addToDB(self, modelDataList):
+        '''
+        IndexTableCnModel 数据添加到中国指数的数据插入到cnIndex数据库中
+        :param modelDataList: IndexTableCnModel对象的list
+        :return:
+        '''
+        if len(modelDataList) > 0:
+            for model in modelDataList:
+                xld_db.session.add(model)
+            xld_db.session.commit()
+

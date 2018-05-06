@@ -1,13 +1,15 @@
 # -*- coding: UTF-8 -*-
 from flask import render_template
-from .. import app
+from myapp import app
 from myapp.services.cnIndexServices import *
+from myapp.datacenter.dataSource.sseDataSource import *
 
 @app.route('/cn/getIndexFullData')
 def getFullDataCnAll():
     '''
         获取所有A股数据包的数据
     '''
+
     cnIndexDao = CnIndexDao()
     data = cnIndexDao.getCnIndexTableDataByStockCode(None)
     return render_template("cn/cnAlldata.html", data = data)
@@ -61,13 +63,16 @@ def complementIndexCnData(stock_code,addtime):
     #TODO:
     pass
 
-#### CN SSE PE AND TRUNOVER RATE
-
+''' ''''''''''''''''''''''''
+CN SSE PE AND TRUNOVER RATE
+''' ''''''''''''''''''''''''
 
 @app.route('/cn/addSSEPeTurnoverRate')
 def addSSEPeTurnoverRate():
-
+    sse_ds = SseDataSource()
+    sse_ds.getSSEPERatio()
     pass
-@app.route('/cn/getSSEPeTurnoverRate')
-def addSSEPeTurnoverRate():
+
+@app.route('/cn/getSSEPeTurnoverRate/<stock_code>/time')
+def getSSEPeTurnoverRate():
     pass

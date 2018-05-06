@@ -2,7 +2,7 @@
 from myapp.datacenter.db.models.cnPERateTurnoverRateModel import *
 from myapp.settings import *
 import logging
-
+from myapp import xld_db
 
 class CnPeRurnoverRateDao:
 
@@ -20,6 +20,13 @@ class CnPeRurnoverRateDao:
             all_data = CnPERateTurnoverRateModel.query.all()
         return all_data
 
-    def addCnSSEPeTurnoverRateToDB(self):
-        #TODO:
+    def addCnSSEPeTurnoverRateToDB(self, modelDataList):
+        '''
+        仅仅执行写DB的操作，大部分格式适配，在sseDataSource
+        '''
+
+        if len(modelDataList) > 0:
+            for model in modelDataList:
+                xld_db.session.add(model)
+            xld_db.session.commit()
 

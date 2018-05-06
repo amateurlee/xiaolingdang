@@ -64,10 +64,7 @@ class CnIndexServices:
                                                             time=wdata["time"], close=wdata["close"])
                 modelDataList.append(model)
         ###### 3. 添加数据
-        if len(modelDataList) > 0:
-            for model in modelDataList:
-                xld_db.session.add(model)
-            xld_db.session.commit()
+        self.cnIndexDao.addToDB(modelDataList)
 
     def getCnPeRurnoverRateFromWeb (self, startDate, endData):
         '''

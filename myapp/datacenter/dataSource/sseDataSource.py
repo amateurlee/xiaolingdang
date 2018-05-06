@@ -3,7 +3,7 @@ from myapp.tools.seleniumTool import SeleniumTool
 from myapp.tools.commonTool import CommonTool
 from selenium.webdriver.common.by import By
 import logging, time
-
+from myapp.settings import *
 
 class SseDataSource:
     sseDatePickerId = "start_date2"
@@ -16,6 +16,7 @@ class SseDataSource:
     avgTurnoverRatioValueXpath = "//td[contains(text(),'换手率')]/../td[3]/div"
     avgPERatioRealDate = "//div[@class='sse_table_title2']/p"
 
+
     def __init__(self):
         pass
 
@@ -27,7 +28,7 @@ class SseDataSource:
         :return:数组格式：（IndexCode, Date, PE市盈率， 市净率）
         :sample:[('000001', '20180402', '17.73', '0.5638'), ('000001', '20180403', '17.57', '0.4829'), ('000001', '20180404', '17.54', '0.4666')]
         '''
-        if beginDate > toDate:
+        if beginDate==None or beginDate > toDate:
             logging.error("Getting PERatio data from date({}) to date({}) error".format(beginDate, toDate))
             return False
         st = SeleniumTool(SseDataSource.avgPERatioCaptureRootUrl)
@@ -95,9 +96,10 @@ class SseDataSource:
         '''
         将上证平均PE和换手率数据添加到数据库，添加之前首先判断是否有重复的数据，去重后添加，
         index_table_cn表中的数据可以以stock_code和time作为唯一标示
-        :param retData:
+        :param retData Sample:[('000001', '20180402', '17.73', '0.5638'), ('000001', '20180403', '17.57', '0.4829'), ('000001', '20180404', '17.54', '0.4666')]
         :return:
         '''
+        TODO: SSE write to DB
 
         ###### 1. 从数据库读取数据
 

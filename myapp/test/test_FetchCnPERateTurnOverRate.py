@@ -25,9 +25,10 @@ class TestStringMethods(unittest.TestCase):
             self.assertTrue(d[1] != None, "PE data is none for:{}".format(d))
             self.assertTrue(d[2] != None, "TurnOver data is none for:{}".format(d))
             self.assertNotEqual("{}{}".format(d[1], d[2]), "{}{}".format(formerdata[1], formerdata[2]))
-        self.test_PERatioTurnOverRateDataToDB(data)
+        self._PERatioTurnOverRateDataToDB(data)
 
-    def test_PERatioTurnOverRateDataToDB(self, data):
+
+    def _PERatioTurnOverRateDataToDB(self, data):
         '''
         测试数据添加到数据库
         :return:
