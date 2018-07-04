@@ -4,7 +4,7 @@ from flask import Flask
 from werkzeug.contrib.fixers import ProxyFix
 from flask_sqlalchemy import SQLAlchemy
 
-from myapp.settings import *
+from autopeak.settings import *
 
 logging.basicConfig(level=logging.DEBUG,
                 format='%(asctime)s %(levelname)s %(filename)s %(message)s',

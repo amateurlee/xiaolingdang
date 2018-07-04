@@ -38,9 +38,20 @@ http {
 
     server {
         listen       80 default_server;
-        listen       [::]:80 default_server;
-        server_name  localhost;
+#        listen       [::]:80 default_server;
+        listen       443 ssl;
+        server_name  120.27.230.115;
         root         /usr/share/nginx/html;
+        
+#        ssl_certificate www.xiaolingdang.top.crt;
+#        ssl_certificate_key www.xiaolingdang.top.key;
+        #ssl           on; #on means only handle https
+        ssl_certificate /etc/nginx/ssl/full_chain.pem;
+        ssl_certificate_key /etc/nginx/ssl/private.key;
+        ssl_session_cache shared:SSL:1m;
+        ssl_session_timeout  10m;
+        ssl_ciphers HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers on;
 
         # Load configuration files for the default server block.
         include /etc/nginx/default.d/*.conf;
@@ -54,7 +65,6 @@ http {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
         }
-
         location /xiaolingdang {
 #           include uwsgi_params;
 #           uwsgi_pass unix:/root/xiaolingdang/logs/mysite.sock;
@@ -63,6 +73,39 @@ http {
             proxy_set_header Host $host;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
+        }
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+#        error_page 500 502 503 504 /50x.html;
+#            location = /50x.html {
+#        }
+    }
+
+    server {
+        listen       443 ssl;
+        server_name  www.xiaolingdang.top;
+        root         /usr/share/nginx/html;
+        
+        #ssl           on; #on means only handle https
+#ssl_certificate /etc/nginx/ssl/xiaolingdang.pem;
+#ssl_certificate_key /etc/nginx/ssl/xiaolingdang_private.key;
+        ssl_certificate /etc/nginx/ssl/full_chain.pem;
+        ssl_certificate_key /etc/nginx/ssl/private.key;
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        location / {
+            proxy_pass http://127.0.0.1:8002; # 这里是指向 gunicorn host 的服务地址
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        location /xiaolingdang {
+            proxy_pass http://127.0.0.1:8001; # 这里是指向 gunicorn host 的服务地址
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         }
 
         error_page 404 /404.html;
