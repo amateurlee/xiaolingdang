@@ -3,7 +3,7 @@ import unittest, os
 from myapp.datacenter.dataSource.sseDataSource import SseDataSource
 import myapp.datacenter.dataSource
 
-class TestStringMethods(unittest.TestCase):
+class TestCnPE(unittest.TestCase):
 
     def setUp(self):
         # Do something to initiate the test environment here.
@@ -25,12 +25,13 @@ class TestStringMethods(unittest.TestCase):
             self.assertTrue(d[1] != None, "PE data is none for:{}".format(d))
             self.assertTrue(d[2] != None, "TurnOver data is none for:{}".format(d))
             self.assertNotEqual("{}{}".format(d[1], d[2]), "{}{}".format(formerdata[1], formerdata[2]))
-        self._PERatioTurnOverRateDataToDB(data)
+        ret = self._PERatioTurnOverRateDataToDB(sse, data)
+        self.assertTrue(ret)
 
 
-    def _PERatioTurnOverRateDataToDB(self, data):
+    def _PERatioTurnOverRateDataToDB(self, sse, data):
         '''
         测试数据添加到数据库
         :return:
         '''
-        pass #peToRate =
+        return sse.addCnSSEPERateTORateToDB(data)

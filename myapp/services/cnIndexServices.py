@@ -73,16 +73,8 @@ class CnIndexServices:
         :param endData: "2018-04-04"
         :return:
         '''
-        sse = SseDataSource()
-        data = sse.getSSEPERatio(beginDate=startDate, toDate=endData)
-        self.assertTrue(len(data) > 0)
-        # formerdata = data.pop(0)
-        # self.assertTrue(formerdata[1]!=None, "PE data is none for:{}".format(formerdata))
-        # self.assertTrue(formerdata[2]!=None, "TurnOver data is none for:{}".format(formerdata))
-        for d in data:
-            self.assertTrue(d[1] != None, "PE data is none for:{}".format(d))
-            self.assertTrue(d[2] != None, "TurnOver data is none for:{}".format(d))
-            self.assertNotEqual("{}{}".format(d[1], d[2]), "{}{}".format(formerdata[1], formerdata[2]))
-        self.test_PERatioTurnOverRateDataToDB(data)
+        data = self.sseDataSource.getSSEPERatio(beginDate=startDate, toDate=endData)
+
+        self.sseDataSource.addCnSSEPERateTORateToDB(data)
 
 

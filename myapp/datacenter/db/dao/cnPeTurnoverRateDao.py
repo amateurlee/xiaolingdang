@@ -10,7 +10,7 @@ class CnPeRurnoverRateDao:
         '''
         查询 cn_perate_turnoverrate 表(包括上证证指数和深圳成指)的市场平均PE和换手率数据, 支持所有数据和指定code获取数据的功能
         :param code:
-        :return:
+        :return: Model list
         '''
         if code:
             logging.debug("Get data from cn_perate_turnoverrate table by stockcode:{}".format(STOCK_INFO["szzs"]["code"]))

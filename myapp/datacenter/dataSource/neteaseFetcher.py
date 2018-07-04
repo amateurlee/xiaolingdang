@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from myapp.services.commonTool import CommonTool
+from myapp.tools.commonTool import CommonTool
 from myapp.datacenter.dataSource.neteaseDataParser import NeteaseDataParser
 
 

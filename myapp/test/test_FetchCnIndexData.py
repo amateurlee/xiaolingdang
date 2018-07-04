@@ -4,7 +4,7 @@ from myapp.services.cnIndexServices import *
 from myapp.settings import *
 
 
-class TestStringMethods(unittest.TestCase):
+class TestCnIndex(unittest.TestCase):
 
     def setUp(self):
         # Do something to initiate the test environment here.

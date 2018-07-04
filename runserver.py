@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-# gunicorn -w 4 -b 127.0.0.1:8000 myapp:app
+#supervisorctl -c config/supervisor.conf reload
 
 from myapp import app
 

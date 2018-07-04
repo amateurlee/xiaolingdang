@@ -1,8 +1,11 @@
 # -*- coding: UTF-8 -*-
 from myapp.tools.seleniumTool import SeleniumTool
 from myapp.tools.commonTool import CommonTool
+from myapp.datacenter.db.dao.cnPeTurnoverRateDao import CnPeRurnoverRateDao
+from myapp.datacenter.db.models.cnPERateTurnoverRateModel import CnPERateTurnoverRateModel
 from selenium.webdriver.common.by import By
 import logging, time
+from myapp import xld_db
 from myapp.settings import *
 
 class SseDataSource:
@@ -18,6 +21,7 @@ class SseDataSource:
 
 
     def __init__(self):
+        self.cnPeTurnoverRateDao = CnPeRurnoverRateDao()
         pass
 
     def getSSEPERatio(self, beginDate, toDate=None):
@@ -94,35 +98,47 @@ class SseDataSource:
 
     def addCnSSEPERateTORateToDB(self, webData):
         '''
-        将上证平均PE和换手率数据添加到数据库，添加之前首先判断是否有重复的数据，去重后添加，
-        index_table_cn表中的数据可以以stock_code和time作为唯一标示
-        :param retData Sample:[('000001', '20180402', '17.73', '0.5638'), ('000001', '20180403', '17.57', '0.4829'), ('000001', '20180404', '17.54', '0.4666')]
+        将web页面获取的数据，插入到数据库中，其中包括与数据库数据去重的逻辑，根据code和date作为唯一key
+
+        :param webData: getSSEPERatio函数返回的页面数据，格式如下：list格式：[（IndexCode, Date, PE市盈率， 市净率）]
         :return:
         '''
-        TODO: SSE write to DB
+
+        #### 从现有的数据库中读出已经存在的model记录，用于去重, DB数据字段：
+        # stock_code
+        # date
+        # pe_ratee
+        # turnover_ratee
 
         ###### 1. 从数据库读取数据
+        existedModelRecords = self.cnPeTurnoverRateDao.getCnPeTurnoverRate()
+        existedRecordKeyDict = {}
+        for existedRecord in existedModelRecords:
+            key =  "{}_{}".format(existedRecord.stock_code, existedRecord.date)
+            existedRecordKeyDict[key] = None  # 仅保存key，用于去重
 
-        szzsData = self.dbTool.getCnIndexTableDataByStockCode(STOCK_INFO["szzs"]["code"])
-        searchIndexData = {}  # 仅用来保存key
-        modelDataList = []
-        if szzsData:
-            for data in szzsData:
-                searchIndexData[data.time] = 0
+        modelList=[]
         ###### 2. 遍历新数据，判断是否已经在数据库中存在，添加新数据
-        for wdata in webData:
-            if searchIndexData.has_key(wdata["time"]):
-                continue  # 数据库中已经存在当前时间的记录
-            else:
-                model = IndexTableCnModel.IndexTableCnModel(index_name=wdata["index_name"],
-                                                            stock_code=wdata["stock_code"],
-                                                            time=wdata["time"], close=wdata["close"])
-                modelDataList.append(model)
+        for data in webData:
+            model = CnPERateTurnoverRateModel(data[0],  #code
+                                              data[1],  #date
+                                              data[2],  #pe rate
+                                              data[3]   #turn over rate
+                                              )
+            key = "{}_{}".format(data[0], data[1])
+            if existedRecordKeyDict.has_key(key):
+                ## 记录已经存在，不需要重复添加
+                continue
+            else :
+                modelList.append(model)
+
         ###### 3. 添加数据
-        if len(modelDataList) > 0:
-            for model in modelDataList:
+        if len(modelList) > 0:
+            for model in modelList:
                 xld_db.session.add(model)
             xld_db.session.commit()
+
+        return True
 
 
 if __name__ == "__main__":

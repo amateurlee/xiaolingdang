@@ -51,6 +51,7 @@ doc: https://blog.csdn.net/lihao21/article/details/47731903
 # 常用命令
 ## nginx
 ./nginx -s quit
+cp ./config/nginx.conf.bak /etc/nginx/nginx.conf
 ./nginx
 PersonalToken:ffdc61dcc96cb4517f0ba3f0fc4e3b419a76a71c
 
