@@ -4,7 +4,7 @@ from flask import Flask
 from werkzeug.contrib.fixers import ProxyFix
 from flask_sqlalchemy import SQLAlchemy
 
-from myapp.settings import *
+from autopeak.settings import *
 
 logging.basicConfig(level=logging.DEBUG,
                 format='%(asctime)s %(levelname)s %(filename)s %(message)s',
@@ -30,5 +30,4 @@ xld_db = SQLAlchemy(app)
 #只有在app对象之后声明，用于导入view模块
 from controller import TestController
 from controller import IndexController
-from controller import CnIndexDataController
 
