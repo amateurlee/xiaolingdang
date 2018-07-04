@@ -30,5 +30,4 @@ xld_db = SQLAlchemy(app)
 #只有在app对象之后声明，用于导入view模块
 from controller import TestController
 from controller import IndexController
-from controller import CnIndexDataController
 
