@@ -28,6 +28,5 @@ xld_db = SQLAlchemy(app)
 # app.jinja_env.variable_end_string = ']]'
 
 #只有在app对象之后声明，用于导入view模块
-from controller import TestController
 from controller import IndexController
 

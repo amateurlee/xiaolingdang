@@ -32,7 +32,7 @@ doc: https://blog.csdn.net/lihao21/article/details/47731903
    pip install supervisor
    echo_supervisord_conf > supervisor.conf   # 生成 supervisor 默认配置文件
    vim supervisor.conf                       # 修改 supervisor 配置文件，添加 gunicorn 进程管理
-   supervisord -c config/supervisor.conf  #启动supervisor
+   supervisord -c config/supervisor.conf     #启动supervisor, 不执行supervisord命令的话，下一条会包没有sock文件或者socket.py的错误
    supervisorctl -c config/supervisor.conf reload|sstatus|tart [all]|[appname]
 ```
 - 配置gunicorn、nginx
